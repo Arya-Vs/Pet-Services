@@ -29,13 +29,12 @@ class GroomingItemDetailScreen extends StatelessWidget {
         backgroundColor: Colors.deepOrange.shade200,
       ),
       body: SingleChildScrollView(
-        
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.network(
+              child: Image.asset(
                 image,
                 width: 200,
                 height: 200,
@@ -43,25 +42,13 @@ class GroomingItemDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              "Breed: $breed",
-              style: const TextStyle(fontSize: 16),
-            ),
+            Text("Breed: $breed", style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            Text(
-              "Service: $service",
-              style: const TextStyle(fontSize: 16),
-            ),
+            Text("Service: $service", style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            Text(
-              "Rate: $rate",
-              style: const TextStyle(fontSize: 16),
-            ),
+            Text("Rate: $rate", style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            Text(
-              "Location: $location",
-              style: const TextStyle(fontSize: 16),
-            ),
+            Text("Location: $location", style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
             Text(
               "Contact Number: $number",
@@ -77,13 +64,16 @@ class GroomingItemDetailScreen extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Booking request sent for $name!'),
-                      backgroundColor: Colors.green, // GREEN COLOR ADDED
+                      backgroundColor: Colors.green,
                     ),
                   );
                 },
-                child: const Text('Book Now',style: TextStyle(color: Colors.white),),
+                child: const Text(
+                  'Book Now',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

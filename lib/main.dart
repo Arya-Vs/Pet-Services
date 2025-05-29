@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pet_services/routes/routes_config.dart'; // Make sure this import path is correct
+import 'package:pet_services/onboarding/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +10,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: RoutesConfig.returnRouter(),
+    return MaterialApp(
       title: 'Pet Services',
       debugShowCheckedModeBanner: false,
+      
+      home: const OnboardingScreen(),
     );
   }
 }

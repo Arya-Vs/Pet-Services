@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pet_services/routes/routes_name.dart'; // Make sure this file exists
+import 'package:pet_services/widgets/bottom_navi.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -42,43 +41,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: SizedBox(
-                  height: 40.0,
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        _currentPage == images.length - 1
-                            ? ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black,
-                                foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 12,
-                                ),
-                                shape: CircleBorder(),
-                              ),
-                              onPressed: () {
-                                context.goNamed(RoutesName.adoption);
-                              },
-
-                              child: const Text("Home"),
-                            )
-                            : TextButton(
-                              onPressed: () {
-                                _controller.jumpToPage(images.length - 1);
-                              },
-
-                              child: Text(""),
-                            ),
-                        const SizedBox(height: 40),
-                      ],
-                    ),
-                  ),
-                ),
               );
             },
           ),
@@ -103,6 +65,41 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               }),
             ),
           ),
+
+          if (_currentPage == images.length - 1)
+            Positioned(
+              bottom: 40,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 14,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MainScreen(),
+                      ),
+                    );
+                  },
+
+                  child: const Text(
+                    "Get Started",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

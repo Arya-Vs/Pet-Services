@@ -50,7 +50,7 @@ class _ServiceListingScreenState extends State<ServiceListingScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Pet Taxi Service',
+          'Services',
           style: GoogleFonts.poppins(color: Colors.white),
         ),
         centerTitle: true,
@@ -97,7 +97,7 @@ class _ServiceListingScreenState extends State<ServiceListingScreen> {
                     contentPadding: const EdgeInsets.all(12),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
+                      child: Image.asset(
                         service['image'],
                         width: 60,
                         height: 60,

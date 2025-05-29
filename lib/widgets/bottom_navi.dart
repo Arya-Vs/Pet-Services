@@ -1,65 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:pet_services/screens/adoption.dart';
+import 'package:pet_services/screens/grooming.dart';
+import 'package:pet_services/screens/service.dart';
+import 'package:pet_services/screens/home.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemSelected;
-
-  const CustomBottomNavBar({
-    Key? key,
-    required this.selectedIndex,
-    required this.onItemSelected,
-  }) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
+class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    HomePage(),
+    GroomingScreen(),
+    ServiceListingScreen(),
+    PetAdoptionScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return SalomonBottomBar(
-      currentIndex: widget.selectedIndex,
-      onTap: (index) {
-        widget.onItemSelected(index);
-
-        switch (index) {
-          case 1:
-            Navigator.pushNamed(context, '/home');
-            break;
-          case 2:
-            Navigator.pushNamed(context, '/grooming');
-            break;
-          case 3:
-            Navigator.pushNamed(context, '/veterinary');
-            break;
-          case 4:
-            Navigator.pushNamed(context, '/boarding');
-            break;
-        }
-      },
-      items: [
-        SalomonBottomBarItem(
-          icon: Icon(Icons.home),
-          title: Text("Home"),
-          selectedColor: Colors.deepOrange,
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.pets),
-          title: Text("Grooming"),
-          selectedColor: Colors.deepOrange,
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.medical_services),
-          title: Text("veterinary"),
-          selectedColor: Colors.deepOrange,
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.home_work_outlined),
-          title: Text("Boarding"),
-          selectedColor: Colors.deepOrange,
-        ),
-      ],
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: [
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text("Home"),
+            selectedColor: Colors.deepOrange,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.pets),
+            title: const Text("Grooming"),
+            selectedColor: Colors.deepOrange,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.medical_services),
+            title: const Text("Services"),
+            selectedColor: Colors.deepOrange,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home_work_outlined),
+            title: const Text("Adoption"),
+            selectedColor: Colors.deepOrange,
+          ),
+        ],
+      ),
     );
   }
 }
