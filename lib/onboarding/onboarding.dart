@@ -17,7 +17,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     'assets/images/image1.jpeg',
     'assets/images/image2.jpeg',
     'assets/images/image3.jpeg',
-    'assets/images/image4.jpeg'
+    'assets/images/image4.jpeg',
   ];
 
   @override
@@ -27,6 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           PageView.builder(
             controller: _controller,
+            physics: const ClampingScrollPhysics(),
             itemCount: images.length,
             onPageChanged: (index) {
               setState(() {
@@ -55,15 +56,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 backgroundColor: Colors.black,
                                 foregroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 32,
+                                  horizontal: 12,
                                   vertical: 12,
                                 ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
+                                shape: CircleBorder(),
                               ),
                               onPressed: () {
-                                context.goNamed(RoutesName.home);
+                                context.goNamed(RoutesName.adoption);
                               },
 
                               child: const Text("Home"),
@@ -109,12 +108,3 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 }
-
- final List<String> imageUrls = [
-    'assets/images/image11.jpeg',
-    'assets/images/image10.jpeg',
-    'assets/images/image9.jpeg',
-    'assets/images/image8.jpeg',
-    // 'assets/images/image7.jpeg',
-    'assets/images/image5.jpeg',
-  ];

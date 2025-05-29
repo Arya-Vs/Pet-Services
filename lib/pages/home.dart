@@ -12,6 +12,25 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
+
+  
+  final List<String> _routes = [
+    '/home',
+    '/grooming',
+    '/veterinary',
+    '/boarding',
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    // Navigate to the corresponding route
+    Navigator.pushNamed(context, _routes[index]);
+  }
+
+
+
   // Add this variable to keep track of current page
   int _currentPage = 0;
 
@@ -25,6 +44,13 @@ class _HomePageState extends State<HomePage> {
     
   ];
 
+  final List<String>petCenter=[
+    'assets/images/image16.jpeg',
+    'assets/images/image17.jpeg',
+    'assets/images/image18.jpeg',
+    'assets/images/image19.jpeg',
+  ];
+
   final List<String>popularCenters=[
     // 'assets/images/image12.jpeg',
     'assets/images/image13.jpeg',
@@ -34,7 +60,7 @@ class _HomePageState extends State<HomePage> {
   final List<String> categories = [
     'Grooming',
     'Boarding',
-    'Vet',
+    'veterinary',
     'Training',
     'Adoption',
     'Vaccination',
@@ -92,7 +118,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.deepOrange,
             foregroundColor: Colors.white,
           ),
-          child: const Text('Book'),
+          child: const Text('Book',style: TextStyle(color: Colors.white),),
         ),
       ),
     );
@@ -123,6 +149,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
                 Text(location, style: const TextStyle(fontSize: 12)),
+                //star
                 Row(
                   children: [
                     Icon(Icons.star, size: 16, color: Colors.amber.shade700),
@@ -142,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text('Book', style: TextStyle(fontSize: 12)),
+                    child:  Text('Book', style: TextStyle(fontSize: 12)),
                   ),
                 ),
               ],
@@ -235,56 +262,57 @@ class _HomePageState extends State<HomePage> {
                 imageUrl: "assets/images/image15.jpeg",
                 name: 'Pet Pals',
                 location: 'Kochi, Kerala',
-                rating: 5.7,
+                
+                rating: 4.8,
               ),
               _buildCenterCard(
                 imageUrl: "assets/images/image14.jpeg",
                 name: 'Pet Paradise',
                 location: 'Kannur, Kerala',
-                rating: 5.1,
+                rating: 4.7,
               ),
               _buildCenterCard(
                 imageUrl: "assets/images/image13.jpeg",
                 name: 'Cats Cafe',
                 location: 'Thrissur, kerala',
-                rating: 4.9,
+                rating: 4.5,
               ),
               const SizedBox(height: 16),
 
               // New GridView Section
               const Text(
-                'Featured Pet Centers',
+                ' Pet Centers',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
                 physics: const NeverScrollableScrollPhysics(),
-                childAspectRatio: 0.75,
+                childAspectRatio: 0.95,
                 children: [
                   _buildFeaturedGridTile(
-                    imageUrl: imageUrls[0],
+                    imageUrl: imageUrls[3],
                     name: 'Pawfect Groomers',
                     location: 'HSR Layout',
                     rating: 4.6,
                   ),
                   _buildFeaturedGridTile(
-                    imageUrl: imageUrls[1],
+                    imageUrl:imageUrls[2],
                     name: 'Whiskers Boarding',
                     location: 'Jayanagar',
                     rating: 4.4,
                   ),
                   _buildFeaturedGridTile(
-                    imageUrl: imageUrls[2],
+                    imageUrl:imageUrls[4],
                     name: 'The Vet Spot',
                     location: 'BTM Layout',
                     rating: 4.9,
                   ),
                   _buildFeaturedGridTile(
-                    imageUrl: imageUrls[0],
+                    imageUrl: imageUrls[1] ,
                     name: 'Happy Tails Training',
                     location: 'Whitefield',
                     rating: 4.2,
@@ -295,28 +323,28 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: SalomonBottomBar(
+    bottomNavigationBar: SalomonBottomBar(
         currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        onTap: _onItemTapped,
         items: [
           SalomonBottomBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
+            icon: const Icon(Icons.home),
+            title: const Text("Home"),
             selectedColor: Colors.deepOrange,
           ),
           SalomonBottomBarItem(
-            icon: Icon(Icons.pets),
-            title: Text("Grooming"),
+            icon: const Icon(Icons.pets),
+            title: const Text("Grooming"),
             selectedColor: Colors.deepOrange,
           ),
           SalomonBottomBarItem(
-            icon: Icon(Icons.medical_services),
-            title: Text("veterinary"),
+            icon: const Icon(Icons.medical_services),
+            title: const Text("Veterinary"),
             selectedColor: Colors.deepOrange,
           ),
           SalomonBottomBarItem(
-            icon: Icon(Icons.home_work_outlined),
-            title: Text("Boarding"),
+            icon: const Icon(Icons.home_work_outlined),
+            title: const Text("Boarding"),
             selectedColor: Colors.deepOrange,
           ),
         ],

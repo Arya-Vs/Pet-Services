@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_services/onboarding/onboarding.dart';
-import 'package:pet_services/pages/boarding.dart';
+import 'package:pet_services/pages/adoption.dart';
+import 'package:pet_services/pages/service.dart';
 import 'package:pet_services/pages/grooming.dart';
 import 'package:pet_services/pages/home.dart';
 import 'package:pet_services/pages/veterinary.dart';
@@ -20,9 +21,9 @@ class RoutesConfig {
         name: RoutesName.home,
         pageBuilder:(context, state) => MaterialPage(child: HomePage()),
         ),
-        GoRoute(path: '/veterinary',
-        name: RoutesName.veterinary,
-        pageBuilder:(context, state) => MaterialPage(child: veterinaryScreen()),
+        GoRoute(path: '/adoption',
+        name: RoutesName.adoption,
+        pageBuilder:(context, state) => MaterialPage(child: PetAdoptionScreen()),
         ),
         GoRoute(path: '/grooming',
         name: RoutesName.grooming,
@@ -30,7 +31,7 @@ class RoutesConfig {
         ),
          GoRoute(path: '/boarding',
         name: RoutesName.boarding,
-        pageBuilder:(context, state) => MaterialPage(child: BoardingScreen()),
+        pageBuilder:(context, state) => MaterialPage(child: ServiceListingScreen()),
         ),
 
     ]);
